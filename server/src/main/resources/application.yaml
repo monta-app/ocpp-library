@@ -1,0 +1,6 @@
+ktor:
+  deployment:
+    port: 8000
+  application:
+    modules:
+      - com.monta.ocpp.MontaApplicationKt.module

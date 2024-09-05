@@ -1,0 +1,10 @@
+[
+  2,
+  "d1f49c6f-47cb-4985-84d2-0760c920261f",
+  "DataTransfer",
+  {
+    "vendorId": "org.openchargealliance.iso15118pnc",
+    "messageId": "GetInstalledCertificateIds",
+    "data": "{\"certificateType\":[\"V2GCertificateChain\",\"V2GRootCertificate\"]}"
+  }
+]

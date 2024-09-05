@@ -1,0 +1,59 @@
+name: Publish package to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: 'gradle'
+      # build project
+      - name: Build with Gradle
+        run: ./gradlew --no-daemon build
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Setup JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: 'gradle'
+      # Publish Package
+      - name: Publish libraries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew --no-daemon publish
+  create-change-log:
+    needs: publish
+    name: Create and publish change log
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Run changelog cli action
+        uses: monta-app/changelog-cli-action@main
+        with:
+          service-name: "OCPP Library"
+          github-release: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          jira-app-name: "montaapp"
+          version-mode: "SemVer"
+          output: "slack"
+          slack-token: ${{ secrets.SLACK_APP_TOKEN }}
+          slack-channel: "#releases"

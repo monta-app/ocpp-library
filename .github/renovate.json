@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>monta-app/renovate-config",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "packageRules": [
+    {
+      "groupName": "upgrade all non-major gradle dependencies",
+      "matchManagers": [
+        "gradle"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "groupSlug": "gradle-all",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    }
+  ]
+}

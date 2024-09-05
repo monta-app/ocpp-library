@@ -1,0 +1,14 @@
+[2, "1700035413777", "StopTransaction", {
+  "idTag": "NoTag",
+  "meterStop": 0,
+  "reason": "HardReset",
+  "timestamp": "2023-11-15T07:54:11.987Z",
+  "transactionData": [{
+    "sampledValue": [],
+    "timestamp": ""
+  }, {
+    "sampledValue": [],
+    "timestamp": ""
+  }],
+  "transactionId": 0
+}]

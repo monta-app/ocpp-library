@@ -1,0 +1,8 @@
+[
+  3,
+  "d1f49c6f-47cb-4985-84d2-0760c920261f",
+  {
+    "status": "Accepted",
+    "data": "{\"status\": \"Accepted\", \"certificateHashDataChain\": [{\"certificateType\": \"V2GCertificateChain\", \"certificateHashData\": {\"hashAlgorithm\": \"SHA512\", \"issuerNameHash\": \"715f1f085463c03ee45d1f42052f751b78e2b10409c64f603a511ab5f2fe1cb2dd20ffbee62b6b437706ea9a43de49b9163d513b4e0b3d334e974ddf940c8948\", \"issuerKeyHash\": \"b7ce00afe5c1f193a3da7eea1249ede615905229dff75e6273240b24a2e0e038746fde717a9fdbfa16ea52630cb4530ce9716fd9ddbce8f1fd9f409e1da8937f\", \"serialNumber\": \"12354\"}}]}"
+  }
+]
