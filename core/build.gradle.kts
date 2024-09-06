@@ -14,11 +14,6 @@ val libraryArtifactId = "core"
 group = "$libraryGroupId:$libraryArtifactId"
 version = libraryVersion
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
 dependencies {
     // Main
     implementation(platform(kotlinlibs.platform))

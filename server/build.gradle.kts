@@ -10,19 +10,6 @@ plugins {
 version = "1.0.0"
 group = "com.monta.ocpp"
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/monta-app/library-micronaut")
-        credentials {
-            username = System.getenv("GHL_USERNAME") ?: project.findProperty("gpr.user") as String?
-            password = System.getenv("GHL_PASSWORD") ?: project.findProperty("gpr.key") as String?
-        }
-    }
-}
-
 dependencies {
 
     implementation(project(":core"))
@@ -54,13 +41,13 @@ dependencies {
     implementation(jackson.bundles.implementation)
 
     // Database Libraries
-    implementation(platform("org.jetbrains.exposed:exposed-bom:0.52.0"))
+    implementation(platform("org.jetbrains.exposed:exposed-bom:0.54.0"))
     implementation("org.jetbrains.exposed:exposed-core")
     implementation("org.jetbrains.exposed:exposed-dao")
     implementation("org.jetbrains.exposed:exposed-jdbc")
     implementation("org.jetbrains.exposed:exposed-java-time")
     implementation("com.zaxxer:HikariCP:5.1.0")
-    runtimeOnly("com.h2database:h2:2.2.224")
+    runtimeOnly("com.h2database:h2:2.3.232")
 
     // Logging
     implementation("io.ktor:ktor-server-call-logging-jvm")

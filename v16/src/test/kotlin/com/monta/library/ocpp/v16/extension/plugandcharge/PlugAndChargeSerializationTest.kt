@@ -7,8 +7,10 @@ import com.monta.library.ocpp.common.serialization.SerializationMode
 import com.monta.library.ocpp.v16.core.DataTransferConfirmation
 import com.monta.library.ocpp.v16.core.DataTransferRequest
 import com.monta.library.ocpp.v16.error.OcppErrorResponderV16
+import com.monta.library.ocpp.v16.extension.plugandcharge.features.Get15118EVCertificateRequest
 import com.monta.library.ocpp.v16.extension.plugandcharge.features.GetInstalledCertificateIdsConfirmation
 import com.monta.library.ocpp.v16.extension.plugandcharge.features.GetInstalledCertificateIdsRequest
+import com.monta.library.ocpp.v16.extension.plugandcharge.features.PncAuthorizeRequest
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldNotBe
@@ -60,6 +62,30 @@ class PlugAndChargeSerializationTest : StringSpec({
     "GetInstalledCertificate confirmation should parse without child certificates" {
         val conf = dtConf(
             "tally-key-bender-GetInstalledCertificateIds.conf.json",
+            GetInstalledCertificateIdsConfirmation::class.java
+        )
+        conf shouldNotBe null
+    }
+
+    "Authorize request should parse with extra type tag" {
+        val conf = dtReq(
+            "kempower-Authorize.req.json",
+            PncAuthorizeRequest::class.java
+        )
+        conf shouldNotBe null
+    }
+
+    "Kempower Get15118EVCertificate request should be deserialized" {
+        val conf = dtReq(
+            "kempower-Get15118EVCertificate.req.json",
+            Get15118EVCertificateRequest::class.java
+        )
+        conf shouldNotBe null
+    }
+
+    "Kempower GetInstalledCertificateIds response should be deserialized" {
+        val conf = dtConf(
+            "kempower-GetInstalledCertificateIds.conf.json",
             GetInstalledCertificateIdsConfirmation::class.java
         )
         conf shouldNotBe null

@@ -91,7 +91,7 @@ class PlugAndChargeExtensionServerProfileTest : StringSpec() {
                     data = messageSerializer.toPayloadString(
                         PncAuthorizeRequest(
                             certificate = acceptedVehicleCertificatePem(),
-                            idToken = "eMAID Accept",
+                            idToken = PncAuthorizeRequest.IdToken("DEICECMONTAQA5"),
                             iso15118CertificateHashData = listOf(ocspRequest())
                         )
                     )
@@ -263,7 +263,7 @@ class PlugAndChargeExtensionServerProfileTest : StringSpec() {
                 confOfdtRequest(
                     GetCertificateStatusConfirmation(
                         status = GetCertificateStatusConfirmation.Status.Accepted,
-                        ocspResult = "base64 encoded raw OSCP"
+                        ocspResult = "base64 encoded raw OCSP"
                     )
                 )
             }.errorCode shouldBe MessageErrorCodeV16.FormationViolation

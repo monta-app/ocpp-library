@@ -14,11 +14,6 @@ val libraryArtifactId = "v201"
 group = "$libraryGroupId:$libraryArtifactId"
 version = libraryVersion
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
 dependencies {
     // Internal Libs
     implementation(project(":core"))

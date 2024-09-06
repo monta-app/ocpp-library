@@ -22,9 +22,7 @@ data class PncAuthorizeRequest(
     // string[0..5500] Optional
     // The X.509 certificated presented by EV and encoded in PEM format
     val certificate: String?,
-    // identifierString[0..20] Required
-    // This contains the identifier that needs to be authorized
-    val idToken: String,
+    val idToken: IdToken,
     // Optional
     // Contains the information needed to verify the EV Contract Certificate via OCSP.
     // A list of up to 4 certificates
@@ -35,6 +33,14 @@ data class PncAuthorizeRequest(
     val evX509Cert: X509Certificate? by lazy {
         CertificateUtil.stringToX509Cert(certificate)
     }
+
+    data class IdToken(
+        // identifierString[0..20] Required
+        // This contains the identifier that needs to be authorized
+        val idToken: String,
+        // Optional, non-standard field from OCPP 2.0.1 (Kempower)
+        val type: String? = null
+    )
 }
 
 data class PncAuthorizeConfirmation(
