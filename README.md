@@ -1,4 +1,32 @@
-# OCPP 1.6 Library
+# OCPP Library
+
+### Setup
+
+Add jitpack to your repositories section in your gradle or maven build file
+
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+```
+
+OCPP V16
+
+```kotlin
+dependencies {
+    implementation("com.monta.library.ocpp:core:<version>")
+    implementation("com.monta.library.ocpp:v16:<version>")
+}
+```
+
+OCPP V201
+
+```kotlin
+dependencies {
+    implementation("com.monta.library.ocpp:core:<version>")
+    implementation("com.monta.library.ocpp:v201:<version>")
+}
+```
 
 ## OCPP Message Direction
 
