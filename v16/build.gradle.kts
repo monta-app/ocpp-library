@@ -9,7 +9,7 @@ plugins {
 }
 
 val libraryGroupId = "com.monta.library.ocpp"
-val libraryArtifactId = "v16"
+val libraryArtifactId = "ocpp-v16"
 
 group = "$libraryGroupId:$libraryArtifactId"
 version = libraryVersion
