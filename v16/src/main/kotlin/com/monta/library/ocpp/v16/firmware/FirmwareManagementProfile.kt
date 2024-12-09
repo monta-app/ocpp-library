@@ -30,7 +30,7 @@ class FirmwareManagementServerProfile(
             )
 
             is FirmwareStatusNotificationRequest -> listener.firmwareStatusNotification(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -75,7 +75,7 @@ class FirmwareManagementClientProfile(
         return when (request) {
             is GetDiagnosticsRequest -> listener.getDiagnostics(ocppSessionInfo, request)
             is UpdateFirmwareRequest -> listener.updateFirmware(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

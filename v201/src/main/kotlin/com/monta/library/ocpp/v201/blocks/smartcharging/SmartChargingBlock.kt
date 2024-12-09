@@ -36,7 +36,7 @@ class SmartChargingClientDispatcher(
             is GetChargingProfilesRequest -> listener.getChargingProfiles(ocppSessionInfo, request)
             is GetCompositeScheduleRequest -> listener.getCompositeSchedule(ocppSessionInfo, request)
             is SetChargingProfileRequest -> listener.setChargingProfile(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -101,7 +101,7 @@ class SmartChargingServerDispatcher(
             is NotifyEVChargingNeedsRequest -> listener.notifyEVChargingNeeds(ocppSessionInfo, request)
             is NotifyEVChargingScheduleRequest -> listener.notifyEVChargingSchedule(ocppSessionInfo, request)
             is ReportChargingProfilesRequest -> listener.reportChargingProfiles(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

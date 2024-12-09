@@ -26,7 +26,7 @@ class TransactionsClientDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is GetTransactionStatusRequest -> listener.getTransactionStatus(request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -55,7 +55,7 @@ class TransactionsServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is TransactionEventRequest -> listener.transactionEvent(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

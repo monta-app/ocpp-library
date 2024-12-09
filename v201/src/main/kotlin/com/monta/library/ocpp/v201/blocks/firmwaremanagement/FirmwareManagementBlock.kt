@@ -31,7 +31,7 @@ class FirmwareManagementClientDispatcher(
             is PublishFirmwareRequest -> listener.publishFirmware(ocppSessionInfo, request)
             is UnpublishFirmwareRequest -> listener.unpublishFirmware(ocppSessionInfo, request)
             is UpdateFirmwareRequest -> listener.updateFirmware(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -80,7 +80,7 @@ class FirmwareManagementServerDispatcher(
                 request
             )
 
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

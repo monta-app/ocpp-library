@@ -45,7 +45,7 @@ class SecurityServerProfile(
                 request
             )
 
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -132,7 +132,7 @@ class SecurityClientProfile(
             is GetInstalledCertificateIdsRequest -> listener.getInstalledCertificateIds(ocppSessionInfo, request)
             is InstallCertificateRequest -> listener.installCertificate(ocppSessionInfo, request)
             is SignedUpdateFirmwareRequest -> listener.signedUpdateFirmware(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

@@ -19,7 +19,7 @@ class DataTransferClientDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is DataTransferRequest -> listener.dataTransfer(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -49,7 +49,7 @@ class DataTransferServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is DataTransferRequest -> listener.dataTransfer(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

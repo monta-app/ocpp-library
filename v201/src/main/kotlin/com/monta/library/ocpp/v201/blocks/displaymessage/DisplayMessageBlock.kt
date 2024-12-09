@@ -30,7 +30,7 @@ class DisplayMessageClientDispatcher(
             is ClearDisplayMessageRequest -> listener.clearDisplayMessage(ocppSessionInfo, request)
             is GetDisplayMessagesRequest -> listener.getDisplayMessages(ocppSessionInfo, request)
             is SetDisplayMessageRequest -> listener.setDisplayMessage(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -70,7 +70,7 @@ class DisplayMessageServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is NotifyDisplayMessagesRequest -> listener.notifyDisplayMessages(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

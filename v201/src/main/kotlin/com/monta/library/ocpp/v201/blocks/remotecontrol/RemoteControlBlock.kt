@@ -30,7 +30,7 @@ class RemoteControlClientDispatcher(
             is RequestStopTransactionRequest -> listener.requestStopTransaction(ocppSessionInfo, request)
             is TriggerMessageRequest -> listener.triggerMessage(ocppSessionInfo, request)
             is UnlockConnectorRequest -> listener.unlockConnector(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -65,7 +65,7 @@ class RemoteControlServerDispatcher : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV201.NotSupported)
+        throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {

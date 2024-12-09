@@ -19,7 +19,7 @@ class SecurityClientDispatcher : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV201.NotSupported)
+        throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {
@@ -40,7 +40,7 @@ class SecurityServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is SecurityEventNotificationRequest -> listener.securityEventNotification(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

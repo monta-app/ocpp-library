@@ -203,10 +203,14 @@ abstract class OcppMessageInterpreter(
         if (result.isFailure) {
             val throwable = result.exceptionOrNull()
 
-            logger.error("exception", throwable)
-
             when (throwable) {
                 is OcppCallException -> {
+                    if (throwable.errorCode.getName() == "NotSupported") {
+                        logger.warn("Message with action [${message.action}] not supported (profile $profile)")
+                    } else {
+                        logger.error("Uncaught OCPP error (${throwable.errorCode.getName()}) for message with action [${message.action}] (profile $profile)", throwable)
+                    }
+
                     sendMessage(
                         ocppSessionInfo = ocppSessionInfo,
                         message = throwable.toMessageError(message.uniqueId)
@@ -214,6 +218,7 @@ abstract class OcppMessageInterpreter(
                 }
 
                 else -> {
+                    logger.error("Uncaught exception for message with action [${message.action}] (profile $profile)", throwable)
                     sendMessage(
                         ocppSessionInfo = ocppSessionInfo,
                         message = OcppCallException.fromException(

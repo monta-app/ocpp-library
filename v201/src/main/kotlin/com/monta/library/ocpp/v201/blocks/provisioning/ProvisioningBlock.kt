@@ -37,7 +37,7 @@ class ProvisioningClientDispatcher(
             is ResetRequest -> listener.reset(ocppSessionInfo, request)
             is SetNetworkProfileRequest -> listener.setNetworkProfile(ocppSessionInfo, request)
             is SetVariablesRequest -> listener.setVariables(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -96,7 +96,7 @@ class ProvisioningServerDispatcher(
         return when (request) {
             is BootNotificationRequest -> listener.bootNotification(ocppSessionInfo, request)
             is NotifyReportRequest -> listener.notifyReport(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

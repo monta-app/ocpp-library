@@ -18,7 +18,7 @@ class LocalListServerProfile : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV16.NotSupported)
+        throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {
@@ -48,7 +48,7 @@ class LocalListClientProfile(
         return when (request) {
             is GetLocalListVersionRequest -> listener.getLocalListVersion(ocppSessionInfo, request)
             is SendLocalListRequest -> listener.sendLocalList(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
