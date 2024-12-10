@@ -14,7 +14,7 @@ class MeterValuesClientDispatcher : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV201.NotSupported)
+        throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {
@@ -36,7 +36,7 @@ class MeterValuesServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is MeterValuesRequest -> listener.meterValues(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

@@ -27,7 +27,7 @@ class AvailabilityClientDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is ChangeAvailabilityRequest -> listener.changeAvailability(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -62,7 +62,7 @@ class AvailabilityServerDispatcher(
         return when (request) {
             is HeartbeatRequest -> listener.heartbeat(ocppSessionInfo, request)
             is StatusNotificationRequest -> listener.statusNotification(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

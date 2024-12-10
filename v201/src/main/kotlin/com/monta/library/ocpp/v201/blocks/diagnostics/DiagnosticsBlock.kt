@@ -41,7 +41,7 @@ class DiagnosticsClientDispatcher(
             is SetMonitoringBaseRequest -> listener.setMonitoringBase(ocppSessionInfo, request)
             is SetMonitoringLevelRequest -> listener.setMonitoringLevel(ocppSessionInfo, request)
             is SetVariableMonitoringRequest -> listener.setVariableMonitoring(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -116,7 +116,7 @@ class DiagnosticsServerDispatcher(
             is NotifyCustomerInformationRequest -> listener.notifyCustomerInformation(ocppSessionInfo, request)
             is NotifyEventRequest -> listener.notifyEvent(ocppSessionInfo, request)
             is NotifyMonitoringReportRequest -> listener.notifyMonitoringReport(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

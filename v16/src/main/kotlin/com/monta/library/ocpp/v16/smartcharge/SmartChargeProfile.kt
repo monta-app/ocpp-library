@@ -20,7 +20,7 @@ class SmartChargeServerProfile : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV16.NotSupported)
+        throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {
@@ -56,7 +56,7 @@ class SmartChargeClientProfile(
             is ClearChargingProfileRequest -> listener.clearChargingProfile(ocppSessionInfo, request)
             is GetCompositeScheduleRequest -> listener.getCompositeSchedule(ocppSessionInfo, request)
             is SetChargingProfileRequest -> listener.setChargingProfile(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

@@ -33,7 +33,7 @@ class CertificateManagementClientDispatcher(
             is DeleteCertificateRequest -> listener.deleteCertificate(ocppSessionInfo, request)
             is GetInstalledCertificateIdsRequest -> listener.getInstalledCertificateIds(ocppSessionInfo, request)
             is InstallCertificateRequest -> listener.installCertificate(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -87,7 +87,7 @@ class CertificateManagementServerDispatcher(
             is Get15118EVCertificateRequest -> listener.get15118EVCertificate(ocppSessionInfo, request)
             is GetCertificateStatusRequest -> listener.getCertificateStatus(ocppSessionInfo, request)
             is SignCertificateRequest -> listener.signCertificate(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

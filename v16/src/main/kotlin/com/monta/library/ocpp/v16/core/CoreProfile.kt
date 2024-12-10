@@ -45,7 +45,7 @@ class CoreClientProfile(
             is RemoteStopTransactionRequest -> listener.remoteStopTransactionRequest(ocppSessionInfo, request)
             is ResetRequest -> listener.resetRequest(ocppSessionInfo, request)
             is UnlockConnectorRequest -> listener.unlockConnectorRequest(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -168,7 +168,7 @@ class CoreServerProfile(
             is StartTransactionRequest -> listener.startTransaction(ocppSessionInfo, request)
             is StopTransactionRequest -> listener.stopTransaction(ocppSessionInfo, request)
             is StatusNotificationRequest -> listener.statusNotification(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

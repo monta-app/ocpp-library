@@ -28,7 +28,7 @@ class ReservationClientDispatcher(
         return when (request) {
             is CancelReservationRequest -> listener.cancelReservation(ocppSessionInfo, request)
             is ReserveNowRequest -> listener.reserveNow(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -63,7 +63,7 @@ class ReservationServerDispatcher(
     ): OcppConfirmation {
         return when (request) {
             is ReservationStatusUpdateRequest -> listener.reservationStatusUpdate(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 

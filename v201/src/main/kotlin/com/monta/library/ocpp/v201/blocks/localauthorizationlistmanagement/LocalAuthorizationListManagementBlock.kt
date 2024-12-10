@@ -29,7 +29,7 @@ class LocalAuthorizationListManagementClientDispatcher(
             is ClearCacheRequest -> listener.clearCache(ocppSessionInfo, request)
             is GetLocalListVersionRequest -> listener.getLocalListVersion(ocppSessionInfo, request)
             is SendLocalListRequest -> listener.sendLocalList(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
@@ -59,7 +59,7 @@ class LocalAuthorizationListManagementServerDispatcher : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV201.NotSupported)
+        throw OcppCallException(MessageErrorCodeV201.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {

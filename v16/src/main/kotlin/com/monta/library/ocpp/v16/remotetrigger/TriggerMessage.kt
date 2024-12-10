@@ -92,7 +92,7 @@ class TriggerMessageServerProfile : ProfileDispatcher {
         ocppSessionInfo: OcppSession.Info,
         request: OcppRequest
     ): OcppConfirmation {
-        throw OcppCallException(MessageErrorCodeV16.NotSupported)
+        throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
     }
 
     interface Sender {
@@ -116,7 +116,7 @@ class TriggerMessageClientProfile(
     ): OcppConfirmation {
         return when (request) {
             is TriggerMessageRequest -> listener.triggerMessage(ocppSessionInfo, request)
-            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported)
+            else -> throw OcppCallException(MessageErrorCodeV16.NotSupported, "Requested Action [${request.actionName()}] is recognized but not supported by the receiver")
         }
     }
 
