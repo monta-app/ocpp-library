@@ -9,7 +9,7 @@ interface OcppRequest {
      */
     fun actionName(): String {
         val className = this::class.java.simpleName
-        if (className.endsWith("Request")) {
+        if ((className.length > 7) && className.endsWith("Request")) {
             return className.dropLast(7)
         }
         return className
