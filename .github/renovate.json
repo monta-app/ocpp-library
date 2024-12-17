@@ -12,13 +12,13 @@
       "matchManagers": [
         "gradle"
       ],
-      "matchPackagePatterns": [
-        "*"
-      ],
       "groupSlug": "gradle-all",
       "matchUpdateTypes": [
         "minor",
         "patch"
+      ],
+      "matchPackageNames": [
+        "*"
       ]
     }
   ]
