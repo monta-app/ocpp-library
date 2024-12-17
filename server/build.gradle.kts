@@ -22,7 +22,7 @@ dependencies {
     implementation(coroutines.bundles.implementation)
 
     // Core
-    implementation(platform("io.ktor:ktor-bom:2.3.12"))
+    implementation(platform("io.ktor:ktor-bom:2.3.13"))
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("io.ktor:ktor-server-host-common-jvm")
@@ -41,7 +41,7 @@ dependencies {
     implementation(jackson.bundles.implementation)
 
     // Database Libraries
-    implementation(platform("org.jetbrains.exposed:exposed-bom:0.54.0"))
+    implementation(platform("org.jetbrains.exposed:exposed-bom:0.57.0"))
     implementation("org.jetbrains.exposed:exposed-core")
     implementation("org.jetbrains.exposed:exposed-dao")
     implementation("org.jetbrains.exposed:exposed-jdbc")
