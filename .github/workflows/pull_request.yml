@@ -12,8 +12,6 @@ jobs:
   test:
     name: Test
     uses: monta-app/github-workflows/.github/workflows/pull-request.yaml@5fe725f615503876677c1cd178a53644691ee84f
-    with:
-      gradle-module: core
     secrets:
       GHL_USERNAME: ${{ secrets.GHL_USERNAME }}
       GHL_PASSWORD: ${{ secrets.GHL_PASSWORD }}
