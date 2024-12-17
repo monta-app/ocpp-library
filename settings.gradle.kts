@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
         // Kotlin coroutines
         create("coroutines") {
-            version("coroutines", "1.8.1")
+            version("coroutines", "1.9.0")
             library("platform", "org.jetbrains.kotlinx", "kotlinx-coroutines-bom").versionRef("coroutines")
             library("core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").withoutVersion()
             library("jdk8", "org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8").withoutVersion()
@@ -31,7 +31,7 @@ dependencyResolutionManagement {
 
         // Jackson serialization
         create("jackson") {
-            version("jackson", "2.17.2")
+            version("jackson", "2.18.2")
             library("platform", "com.fasterxml.jackson", "jackson-bom").versionRef("jackson")
             library("core", "com.fasterxml.jackson.core", "jackson-core").withoutVersion()
             library("annotations", "com.fasterxml.jackson.core", "jackson-annotations").withoutVersion()
@@ -45,7 +45,7 @@ dependencyResolutionManagement {
         create("kotest") {
             version("kotest", "5.9.1")
             version("strikt", "0.35.1")
-            version("jupiter", "5.10.3")
+            version("jupiter", "5.11.4")
 
             library("platform", "io.kotest", "kotest-bom").versionRef("kotest")
             library("junit5", "io.kotest", "kotest-runner-junit5-jvm").withoutVersion()
@@ -60,7 +60,7 @@ dependencyResolutionManagement {
 
         // Logback
         create("logback") {
-            version("logback", "1.5.6")
+            version("logback", "1.5.12")
             library("logback", "ch.qos.logback", "logback-classic").versionRef("logback")
             bundle("implementation", listOf("logback"))
         }
