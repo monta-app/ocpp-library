@@ -1,0 +1,7 @@
+[2, "2024120922534800000049", "StatusNotification", {
+  "connectorId": 1,
+  "status": "Available",
+  "errorCode": "NoError",
+  "info": "eCp_12V",
+  "timestamp": "2024-12-09T22:53:49.000Z"
+}]

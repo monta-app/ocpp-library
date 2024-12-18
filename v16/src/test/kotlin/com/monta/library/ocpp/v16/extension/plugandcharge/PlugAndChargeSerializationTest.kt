@@ -23,7 +23,7 @@ class PlugAndChargeSerializationTest : StringSpec({
         val json = this.javaClass.getResourceAsStream(fileName)?.bufferedReader().use { it?.readText() }!!
         val result = messageSerializer.parse(json)
         result should beInstanceOf<ParsingResult.Success<DataTransferRequest>>()
-        val resp = (result as ParsingResult.Success<Message.Request>).value
+        val resp = (result as ParsingResult.Success<*>).value as Message.Request
         val parseResult = messageSerializer.deserializePayload(resp, DataTransferRequest::class.java)
         when (parseResult) {
             is ParsingResult.Success<DataTransferRequest> -> {
@@ -40,7 +40,7 @@ class PlugAndChargeSerializationTest : StringSpec({
         val json = this.javaClass.getResourceAsStream(fileName)?.bufferedReader().use { it?.readText() }!!
         val result = messageSerializer.parse(json)
         result should beInstanceOf<ParsingResult.Success<DataTransferConfirmation>>()
-        val resp = (result as ParsingResult.Success<Message.Response>).value
+        val resp = (result as ParsingResult.Success<*>).value as Message.Response
         val parseResult = messageSerializer.deserializePayload(resp, DataTransferConfirmation::class.java)
         when (parseResult) {
             is ParsingResult.Success<DataTransferConfirmation> -> {

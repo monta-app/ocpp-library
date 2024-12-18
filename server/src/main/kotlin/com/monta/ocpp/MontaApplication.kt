@@ -22,7 +22,7 @@ import com.monta.library.ocpp.v201.server.OcppServerV201Builder
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
-import io.ktor.server.plugins.callloging.*
+import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
 import io.ktor.server.util.*
@@ -34,6 +34,7 @@ import java.time.Duration
 import java.time.ZonedDateTime
 import java.util.TimeZone
 import java.util.zip.Deflater
+import kotlin.time.toKotlinDuration
 
 fun main(
     args: Array<String>
@@ -59,8 +60,8 @@ fun Application.module() {
             objectmapper = MontaSerialization.getDefaultMapper()
         )
 
-        pingPeriod = Duration.ofSeconds(15)
-        timeout = Duration.ofSeconds(15)
+        pingPeriod = Duration.ofSeconds(15).toKotlinDuration()
+        timeout = Duration.ofSeconds(15).toKotlinDuration()
 
         maxFrameSize = Long.MAX_VALUE
         masking = false
