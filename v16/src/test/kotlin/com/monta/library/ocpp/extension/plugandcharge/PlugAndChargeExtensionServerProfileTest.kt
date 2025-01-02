@@ -1,5 +1,6 @@
 package com.monta.library.ocpp.extension.plugandcharge
 
+import com.monta.library.ocpp.TestUtils.ASYNC_TIMEOUT_MS
 import com.monta.library.ocpp.common.profile.Feature
 import com.monta.library.ocpp.common.profile.OcppConfirmation
 import com.monta.library.ocpp.common.profile.OcppRequest
@@ -70,13 +71,13 @@ class PlugAndChargeExtensionServerProfileTest : StringSpec() {
         "invalid data transfer should cause error" {
             val session = createSession()
             runBlocking {
-                withTimeout(1000L) {
+                withTimeout(ASYNC_TIMEOUT_MS) {
                     async {
                         server.receiveMessage(session, """[2,"test","DataTransfer",{}]""")
                     }.await() // let exceptions bobble up.
                 }
             }
-            val error = withTimeout(1000L) { sendErrorChannel.receive() }
+            val error = withTimeout(ASYNC_TIMEOUT_MS) { sendErrorChannel.receive() }
             error.errorCode shouldBe MessageErrorCodeV16.FormationViolation.name
         }
 
@@ -321,12 +322,12 @@ class PlugAndChargeExtensionServerProfileTest : StringSpec() {
 
     private suspend fun reqExpectConf(req: Message): DataTransferConfirmation {
         val session = createSession()
-        withTimeout(1000L) {
+        withTimeout(ASYNC_TIMEOUT_MS) {
             async {
                 server.receiveMessage(session, req)
             }.await() // let exceptions bobble up.
         }
-        val msg = withTimeout(1000L) { sendResponseChannel.receive() }
+        val msg = withTimeout(ASYNC_TIMEOUT_MS) { sendResponseChannel.receive() }
         val dtConf =
             messageSerializer.deserializePayload(msg, DataTransferConfirmation::class.java) as ParsingResult.Success
         return dtConf.value
