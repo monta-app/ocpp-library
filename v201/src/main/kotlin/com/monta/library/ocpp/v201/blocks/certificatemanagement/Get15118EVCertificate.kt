@@ -25,8 +25,8 @@ data class Get15118EVCertificateRequest(
         require(iso15118SchemaVersion.length <= 50) {
             "iso15118SchemaVersion length > maximum 50 - ${iso15118SchemaVersion.length}"
         }
-        require(exiRequest.length <= 5600) {
-            "exiRequest length > maximum 5600 - ${exiRequest.length}"
+        require(exiRequest.length <= 7500) {
+            "exiRequest length > maximum 7500 - ${exiRequest.length}"
         }
     }
 
@@ -45,8 +45,8 @@ data class Get15118EVCertificateResponse(
 ) : OcppConfirmation {
 
     init {
-        require(exiResponse.length <= 5600) {
-            "exiResponse length > maximum 5600 - ${exiResponse.length}"
+        require(exiResponse.length <= 7500) {
+            "exiResponse length > maximum 7500 - ${exiResponse.length}"
         }
     }
 

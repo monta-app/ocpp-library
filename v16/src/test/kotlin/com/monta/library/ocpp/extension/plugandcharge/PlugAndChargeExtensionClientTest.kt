@@ -1,5 +1,6 @@
 package com.monta.library.ocpp.extension.plugandcharge
 
+import com.monta.library.ocpp.TestUtils.ASYNC_TIMEOUT_MS
 import com.monta.library.ocpp.common.profile.OcppConfirmation
 import com.monta.library.ocpp.common.serialization.Message
 import com.monta.library.ocpp.common.serialization.MessageSerializer
@@ -53,7 +54,7 @@ class PlugAndChargeExtensionClientTest : StringSpec() {
 
     init {
         "GetInstalledCertificateIdsConfirmation can be sent" {
-            val conf = withTimeout(1000L) {
+            val conf = withTimeout(ASYNC_TIMEOUT_MS) {
                 async {
                     server.asPlugAndChargeProfile(getInstalledSession)
                         .getInstalledCertificateIds(
@@ -72,7 +73,7 @@ class PlugAndChargeExtensionClientTest : StringSpec() {
         }
 
         "CertificateSigned can be sent" {
-            val conf = withTimeout(1000L) {
+            val conf = withTimeout(ASYNC_TIMEOUT_MS) {
                 async {
                     server.asPlugAndChargeProfile(certificateSignedSession)
                         .certificateSigned(
@@ -86,7 +87,7 @@ class PlugAndChargeExtensionClientTest : StringSpec() {
         }
 
         "DeleteCertificate can be sent" {
-            val conf = withTimeout(1000L) {
+            val conf = withTimeout(ASYNC_TIMEOUT_MS) {
                 async {
                     server.asPlugAndChargeProfile(deleteCertificateSession)
                         .deleteCertificate(
@@ -105,7 +106,7 @@ class PlugAndChargeExtensionClientTest : StringSpec() {
         }
 
         "InstallCertificate can be sent" {
-            val conf = withTimeout(1000L) {
+            val conf = withTimeout(ASYNC_TIMEOUT_MS) {
                 async {
                     server.asPlugAndChargeProfile(installCertificateSession)
                         .installCertificate(
