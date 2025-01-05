@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
         // Kotlin coroutines
         create("coroutines") {
-            version("coroutines", "1.9.0")
+            version("coroutines", "1.10.1")
             library("platform", "org.jetbrains.kotlinx", "kotlinx-coroutines-bom").versionRef("coroutines")
             library("core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").withoutVersion()
             library("jdk8", "org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8").withoutVersion()
@@ -60,7 +60,7 @@ dependencyResolutionManagement {
 
         // Logback
         create("logback") {
-            version("logback", "1.5.12")
+            version("logback", "1.5.16")
             library("logback", "ch.qos.logback", "logback-classic").versionRef("logback")
             bundle("implementation", listOf("logback"))
         }
